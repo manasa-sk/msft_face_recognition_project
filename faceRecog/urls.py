@@ -13,6 +13,7 @@ urlpatterns = [
     path('cam_feed_L/', views.check_face, name='cam_feed_L'),
     path('scanL/', views.scanL, name='scanL'),
     path('dash/', views.dashboard, name='dash'),
+    path('s/', views.success, name='s'),
     path('profile/', views.profile, name='profile'),
     path('showProfile/', views.showProfile, name='showProfile'),
     path('showPost/', views.showPost, name='showPost'),
