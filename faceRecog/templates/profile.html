@@ -1,0 +1,57 @@
+{% extends 'baseA.html' %}
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+<!-- p_user Details -->
+<div class="col-md-4 col-xl-3">
+    <div class="card mb-3">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Profile Details</h5>
+        </div>
+        <div class="card-body text-center">
+            <img src="{{p_user.profile_pic.url}}" alt="{{p_user.name}}" class="img-fluid rounded-circle mb-2" width="128" height="128" />
+            <h5 class="card-title mb-0">{{p_user.name}}</h5>
+            <div class="text-muted mb-2">{{p_user.username}}</div>
+
+        </div>
+        <hr class="my-0" />
+        <div class="card-body">
+            <h5 class="h6 card-title">About</h5>
+            <ul class="list-unstyled mb-0">
+                <li class="mb-1"> {{p_user.about}} </li>
+
+            </ul>
+        </div>
+        <hr class="my-0" />
+        {% if edit_opt %}
+        <br><a href="{% url 'editProfile' %}" class="btn btn-primary" style="margin: 0.5rem;">Edit Profile</a>
+        <br><a href="{% url 'delete' %}" class="btn btn-primary" style="margin: 0.5rem; background-color: red;">
+            <i class="align-middle" data-feather="danger" style="background-color: transparent;"></i> Delete Account</a>
+        {% endif %}
+    </div>
+</div>
+
+<!-- p_user Posts -->
+<div class="col-md-8 col-xl-9">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0"><i class="align-middle" data-feather="grid" ></i> 
+                <span class="align-middle" style="background-color: transparent;"> Posts</span></h5>
+        </div>
+
+        {% for post in userPosts %}
+        <form action="/showPost/" method="get">
+            <div class="card-body h-50">
+                <input type="hidden" name="pid" value="{{post.post_id}}">
+                <div class="card" style="display: block;">
+                    <button type="submit" style="border: none; background-color: transparent; cursor: pointer;">
+                        <img class="card-img-top" src="{{post.image.url}}" alt="{{p_user.username}}">
+                    </button>
+                    <p class="card-text">Likes: {{post.likes}}</p>
+                </div>          
+            </div>
+        </form>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

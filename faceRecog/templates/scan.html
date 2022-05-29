@@ -1,0 +1,20 @@
+{% extends 'baseB.html' %}
+{% block title %}Scan Face{% endblock %}
+{% block head %}SCAN FACE{% endblock %}
+
+{% block form %}
+<div class="mb-3">
+    <h4 style="text-align: center;">
+        Scan your face to {{action}}
+    </h4>
+    <p>Please click on the button to capture image</p>
+    <p>Pro Tip: Sit in good lighting and make sure your face is clearly visible</p>
+    <p>Pro Tip: Remove any objects from your face</p><br>
+    <form action="/{{scan_url}}/" method="get">
+        <div class="text-center mt-3">
+            <button type="submit" class="btn btn-lg btn-primary">SCAN NOW</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+

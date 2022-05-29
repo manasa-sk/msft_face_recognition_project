@@ -1,0 +1,25 @@
+{% extends 'baseB.html' %}
+{% block title %}Log In{% endblock %}
+{% block head %}LOGIN{% endblock %}
+
+{% block form %}
+{% load static %}
+<form action="/loginU/" method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label" for="c_uname">Username</label>
+        <input class="form-control form-control-lg" type="text" name="c_uname" placeholder="Username" required />
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="pass">Password</label>
+        <input class="form-control form-control-lg" type="password" name="pass" placeholder="Password" required />
+    </div>
+    <p style="color: red;">{{msg}}</p>
+    <div class="text-center mt-3">
+        <button type="submit" class="btn btn-lg btn-primary">Log in</button>
+    </div><br>
+    <div>
+       <p> Don't have an account yet? <a href="{% url 'register' %}">Click here</a> to register</p>
+    </div>
+</form>
+{% endblock %}

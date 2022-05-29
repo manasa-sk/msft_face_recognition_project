@@ -1,0 +1,16 @@
+{% extends 'baseA.html' %}
+{% block title %}Create Post{% endblock %}
+{% block heading %}Create Post{% endblock %}
+
+{% block body %}
+<form action="/create_post/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="image" class="form-label">Image </label>
+        <input type="file" name="image" id="image" accept="images/*" required>
+    </div>
+    <div class="text-center mt-3">
+        <button type="submit" class="btn btn-lg btn-primary">Post</button>
+    </div>
+</form>
+{% endblock %}

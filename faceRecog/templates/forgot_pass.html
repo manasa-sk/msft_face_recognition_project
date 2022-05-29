@@ -1,0 +1,61 @@
+{% extends 'baseB.html' %}
+{% block title %}Forgot Password{% endblock %}
+{% block head %}FORGOT PASSWORD{% endblock %}
+
+{% block form %}
+{% load static %}
+
+{% if level==0 %}
+<form action="/forgot_pass/" method="get">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label" for="c_uname">Username</label>
+        <input class="form-control form-control-lg" type="text" name="c_uname" placeholder="Username" required />
+    </div>
+    </div>
+    <input type="hidden" name="level" value="{{level}}">
+    <p style="color: red;">{{msg}}</p>
+    <div class="text-center mt-3">
+        <button type="submit" class="btn btn-lg btn-primary">Next</button>
+    </div><br>
+</form>
+{% endif %}
+
+{% if level==1 %}
+<div class="mb-3">
+    <h4 style="text-align: center;">
+        Scan your face to continue
+    </h4>
+    <p>Please click on the button and press 'Enter' to capture image</p>
+    <p>Pro Tip: Sit in good lighting and make sure your face is clearly visible</p>
+    <p>Pro Tip: Remove any objects from your face</p><br>
+    <form action="/forgot_pass/" method="get">
+        <input type="hidden" name="level" value="{{level}}">
+        <p style="color: red;">{{msg}}</p>
+        <div class="text-center mt-3">
+            <button type="submit" class="btn btn-lg btn-primary">SCAN NOW</button>
+        </div>
+    </form>
+</div>
+{% endif %}
+
+{% if level==2 %}
+<form action="/forgot_pass/" method="get">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label" for="pass">Password *</label>
+        <input class="form-control form-control-lg" type="password" name="pass" placeholder="Password" required />
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="cpass">Confirm Password *</label>
+        <input class="form-control form-control-lg" type="password" name="cpass" placeholder="Password" required />
+    </div>
+    <input type="hidden" name="level" value="{{level}}">
+    <div class="text-center mt-3">
+        <button type="submit" class="btn btn-lg btn-primary">Change Password</button>
+        
+    </div>
+</form>
+{% endif %}
+
+{% endblock %}

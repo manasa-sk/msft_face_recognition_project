@@ -1,0 +1,20 @@
+{% extends 'baseA.html' %}
+{% block title %}Edit Profile{% endblock %}
+{% block heading %}Edit Profile{% endblock %}
+
+{% block body %}
+<form action="/edit/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="about" class="form-label">About </label>
+        <textarea class="form-control" rows="4" placeholder="About" name="about">{{user.about}}</textarea>
+    </div>
+    <div class="mb-3">
+        <label for="pp" class="form-label">New Profile Picture </label>
+        <input type="file" name="pp" id="pp" accept="images/*">
+    </div>
+    <div class="text-center mt-3">
+        <button type="submit" class="btn btn-lg btn-primary">Edit</button>
+    </div>
+</form>
+{% endblock %}
