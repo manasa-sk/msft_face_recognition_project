@@ -1,7 +1,7 @@
 # PACE
 ## A social media application that uses facial recognition for user authentication and registration
 
-### How to run locally
+### How to run locally (Specific to Windows)
 - Clone this repository into a directory: 
     https://github.com/manasa-sk/msft_face_recognition_project.git
 - Move into the directory and run:
