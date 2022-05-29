@@ -164,21 +164,8 @@ def identifyUsers(post):
 
 
 #PLATFORM VIEWS
-def get_notifications():
-    user = getUser()
-    if user is None:
-        return HttpResponseRedirect('')
-    notifications = []
-    notifs = PostPeople.objects.filter(username=user)
-    if not notifs:
-        pass
-    else:
-        for notif in notifs:
-            if notif.post_id.username != user:
-                notifications.append(notif)
-    return notifications
 
-notifications = get_notifications() #GLOBAL VARIABLE
+notifications = [] #GLOBAL VARIABLE
 
 def get_notif_num():
     global notifications
@@ -201,7 +188,7 @@ def dashboard(request):
     
     global posts
     global notifications
-    return render(request, 'dashboard.html', {'user': user, 'posts': posts, 'notifications': get_notifications(), 'notif_num': get_notif_num()})
+    return render(request, 'dashboard.html', {'user': user, 'posts': posts, 'notifications': [], 'notif_num': get_notif_num()})
 
 @login_required(login_url='login')
 def profile(request):
@@ -212,7 +199,7 @@ def profile(request):
     global notifications
     getPosts(user)
     global user_posts
-    return render(request, 'profile.html', {'user': user, 'p_user': user, 'edit_opt': edit_opt, 'userPosts': user_posts, 'notifications': get_notifications(), 'notif_num': get_notif_num()})
+    return render(request, 'profile.html', {'user': user, 'p_user': user, 'edit_opt': edit_opt, 'userPosts': user_posts, 'notifications': [], 'notif_num': get_notif_num()})
 
 @login_required(login_url='login')
 def showProfile(request):
@@ -230,7 +217,7 @@ def showProfile(request):
         global notifications
         getPosts(p_user)
         global user_posts
-        return render(request, 'profile.html', {'user': a_user, 'p_user': p_user, 'edit_opt': edit_opt, 'userPosts': user_posts, 'notifications': get_notifications(), 'notif_num': get_notif_num()})
+        return render(request, 'profile.html', {'user': a_user, 'p_user': p_user, 'edit_opt': edit_opt, 'userPosts': user_posts, 'notifications': [], 'notif_num': get_notif_num()})
 
 
 @login_required(login_url='login')
@@ -262,7 +249,7 @@ def showPost(request):
             delete_opt = False
         else:
             delete_opt = True
-        return render(request, 'post.html', {'user': user, 'post': post, 'people': people, 'delete_opt': delete_opt, 'notifications': get_notifications(), 'notif_num': get_notif_num()})
+        return render(request, 'post.html', {'user': user, 'post': post, 'people': people, 'delete_opt': delete_opt, 'notifications': [], 'notif_num': get_notif_num()})
 
 @login_required(login_url='login')
 def report(request):
@@ -283,7 +270,7 @@ def editForm(request):
     if user is None:
         return render(request, 'login.html', {'action': 'loginU', 'msg': ''})
     global notifications
-    return render(request, 'edit_profile.html', {'user': user, 'notifications': get_notifications(), 'notif_num': get_notif_num()})
+    return render(request, 'edit_profile.html', {'user': user, 'notifications': [], 'notif_num': get_notif_num()})
 
 @login_required(login_url='login')
 def edit(request):
@@ -307,7 +294,7 @@ def create(request):
     user = getUser()
     if user is None:
         return render(request, 'login.html', {'action': 'loginU', 'msg': ''})
-    return render(request, 'create_post.html', {'notifications': get_notifications(), 'notif_num': get_notif_num(), 'user': user})
+    return render(request, 'create_post.html', {'notifications': [], 'notif_num': get_notif_num(), 'user': user})
 
 @login_required(login_url='login')
 def create_post(request):
