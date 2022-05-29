@@ -45,6 +45,13 @@ def loginU(request):
             msg = 'User does not exist. Try registering.'
         return render(request, 'login.html', {'action': 'loginU', 'msg': msg})
 
+def getUser():
+    try:
+        user = User.objects.get(is_active=True)
+        return user
+    except User.DoesNotExist:
+        return None
+    
 @login_required(login_url='login')
 def logout(request):
     user = getUser()
@@ -91,13 +98,6 @@ def registerU(request):
                 return HttpResponseRedirect('/scanR/')
         return render(request, 'register.html', {'action': 'registerU', 'msg': msg})
 
-
-def getUser():
-    try:
-        user = User.objects.get(is_active=True)
-        return user
-    except User.DoesNotExist:
-        return None
 
 def scanR(request):
     return render(request, 'scan.html', {'scan_url': 'cam_feed_R', 'action': 'register'})
