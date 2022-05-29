@@ -18,7 +18,6 @@ urlpatterns = [
     path('showPost/', views.showPost, name='showPost'),
     path('editProfile/', views.editForm, name='editProfile'),
     path('edit/', views.edit, name='edit'),
-    path('forgot_pass/', views.forgot_pass, name='forgot_pass'),
     path('logout/', views.logout, name='logout'),
     path('create_post/', views.create_post, name='create_post'),
     path('likePost/', views.likePost, name='likePost'),
