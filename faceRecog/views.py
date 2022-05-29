@@ -131,7 +131,7 @@ def cam_feed(request):
         return render(request, 'register.html', {'msg': msg})
     else:
         login(request)
-        return redirect('dash')
+        return redirect('s')
         
 @login_required(login_url='login')
 def check_face(request):
@@ -149,12 +149,14 @@ def check_face(request):
 
     if result:
         login(request)
-        return redirect('dash')
+        return redirect('s')
     logout(request)
     user.is_active = False
     msg = 'Face does not match, try registering'
     return render(request, 'login.html', {'msg': msg})
 
+def success(request):
+    return render(request, 'success.html')
 
 def identifyUsers(post):
     global post_people
